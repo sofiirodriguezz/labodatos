@@ -28,4 +28,95 @@ def obelisco(b):
     return dias
     
 print(obelisco(0.00011))
+
+import random 
+
+prueba = random.random()
+#print(prueba)
+prueba = random.random()
+#print(prueba)
+prueba = random.random()
+#print(prueba)
+
+random.seed()
+
+import math
+
+math.sqrt(2)
+
+
+nombre_archivo = 'datame.txt'         # 'Descargas/datame.txt' para buscarlo, dos puntos adelante/ cuando esa una carpeta adentro de otra
+f = open(nombre_archivo, 'rt')        #abrir para lectura(r de read, t de text)
+data = f.read()
+f.close()
+
+data
+print(data)
+
+
+
+with open(nombre_archivo,'rt') as file: #otra forma de abrir archivos
+    data = file.read()
+    #'data' es una cadena con todo el texto del archivo
+    data
+    print(data)
+
+with open(nombre_archivo,'rt') as file: #leer un archivo linea por linea
+    for line in file:
+        pass
+        # procesar la linea
+        
+data_nuevo = '2024 seguimos con DATAME\n\n' + data 
+data_nuevo = data_nuevo + 'Direccion de carrera LCD'
+
+datame = open("datame_2024.txt","w") #write mode
+datame.write(data_nuevo)
+datame.close()
+
+
+#archivos .csv (csv = comma separated values)
+# son planillas guardadas como texto 
+
+nombre_archivo = 'cronograma_sugerido.csv'
+with open(nombre_archivo,'rt') as file:
+    for line in file :
+        datos_linea = line.split(',')
+        print(datos_linea)
+
+import csv        
+        
+f = open(nombre_archivo)
+filas= csv.reader(f)
+for fila in filas:
+    print(fila)
+    
+f.close()
+
+f = open(nombre_archivo)
+filas = csv.reader(f)
+encabezado = next(filas) # un paso del iterador
+for fila in filas :         # ahora el iterador sigue desde la segunda fila
+    print(fila)
+
+f.close()
+
+
+#Numpy(numerical python)
+#estandar para trabajar con datos numericos en python
+
+
+import numpy as np 
+
+import pandas as pd 
+
+d= {'nombre' : ['Antonio', 'Brenda', 'Camilo','David'], 'apellido' : ['Restrepo', 'Saenz','Torres','Urondo'], 'lu' : ['78/23', '449/22','111/24', '1/21']}
+
+df = pd.DataFrame(data=d) # creamos un df a partir de un diccionario
+df.set_index('lu',inplace= True) #seteamos una columna como index 
+
+#print(df)
+
+#print(df.head(2))
+
+
     

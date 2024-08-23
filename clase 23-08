@@ -62,3 +62,20 @@ df_aprobados = df_nuevo[df_nuevo['nota1'] >= 5]
 
 print(df_nuevo)
 print(df_aprobados)
+
+#%%
+#Ejercicios
+Home = Path.home()
+
+nombre = Home /'Descargas/arbolado-en-espacios-verdes.csv'
+
+df = pd.read_csv(nombre)
+
+df_jacaranda= df[df['nombre_com'] == 'Jacaranda']
+print(df_jacaranda)
+
+#%%
+
+df_paloBorracho = df[df['nombre_com']== 'Palo borracho rosado']
+print(df_paloBorracho)
+

@@ -71,11 +71,50 @@ nombre = Home /'Descargas/arbolado-en-espacios-verdes.csv'
 
 df = pd.read_csv(nombre)
 
-df_jacaranda= df[df['nombre_com'] == 'Jacaranda']
-print(df_jacaranda)
+df_jacaranda= df[df['nombre_com'] == 'Jacarandá'] 
+
+altura_max = df_jacaranda['altura_tot'].max()
+altura_min = df['altura_tot'].min()
+promedio_altura = df['altura_tot'].mean()
+
+diametro_max= df_jacaranda['diametro'].max()
+diametro_min = df_jacaranda['diametro'].min()
+diametro_promedio = df_jacaranda['diametro'].mean()
+
+
+
+
+
+
+#%%
+df_paloBorracho = df[df['nombre_com']== 'Palo borracho rosado']
+
+altura_max = df_paloBorracho['altura_tot'].max()
+altura_min = df_paloBorracho['altura_tot'].min()
+promedio_altura = df_paloBorracho['altura_tot'].mean()
+
+diametro_max = df_paloBorracho['diametro'].max()
+diametro_min = df_paloBorracho['diametro'].min()
+diametro_promedio= df_paloBorracho['diametro'].mean()
 
 #%%
 
-df_paloBorracho = df[df['nombre_com']== 'Palo borracho rosado']
-print(df_paloBorracho)
+def cantidad_arboles(parque):
+    df_parque = df[df['espacio_ve'] == parque]
+    cant = df_parque.count().max() #count cuenta todos y max te de el maximo de los que contaste
+    
+    return cant
+
+print(cantidad_arboles('DE SAN BENITO'))
+
+#%%
+
+def cantidad_nativos(parque):
+    df_parque = df[df['espacio_ve'] == parque ]
+    df_nativos = df_parque[df_parque['origen'] == 'Nativo/Autóctono']
+    cant = df_nativos.count().max()
+    
+    return cant
+
+print(cantidad_nativos('AVELLANEDA, NICOLÁS, Pres.'))
 

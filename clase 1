@@ -45,7 +45,7 @@ import math
 math.sqrt(2)
 
 
-nombre_archivo = 'datame.txt'         # 'Descargas/datame.txt' para buscarlo, dos puntos adelante/ cuando esa una carpeta adentro de otra
+nombre_archivo = 'datame.txt'         # 'Home / Descargas/datame.txt' para buscarlo, dos puntos adelante/ cuando esa una carpeta adentro de otra
 f = open(nombre_archivo, 'rt')        #abrir para lectura(r de read, t de text)
 data = f.read()
 f.close()

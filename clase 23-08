@@ -13,3 +13,55 @@ df = pd.read_csv(nombre)
 
 #%% te separa el codigo con una linea
 #en Spyder explorador de variables y doble clic para ver
+
+import pandas as pd
+import numpy as np
+
+
+#%% armo un dataframe a partir de un diccionario
+d = {'nombre':['Antonio', 'Brenda', 'Camila', 'David', 'Esteban', 'Felicitas'], 'apellido': ['Restrepo', 'Saenz', 'Torres', 'Urondo', 'Valdes', 'Wainstein'], 'lu': ['78/23', '449/22', '111/24', '1/21', '201/06', '47/20'], 'nota1': [9, 7, 7, 4, 3, np.nan], 'nota2': [10, 6, 7, 8, 5, np.nan], 'aprueba': [True, True, True, False, False, np.nan]}
+
+df = pd.DataFrame(data = d) # creamos un df a partir de un diccionario
+df.set_index('lu', inplace = True) # seteamos una columna como index
+#%%
+df.head()   
+df.tail()
+df.info() 
+df.dtypes
+df.columns  
+df.index
+df.describe() 
+df[['nombre', 'nota1']]
+df['nombre']
+df.iloc[2]
+df.iloc[2:6]
+df.loc['78/23']
+df.loc['78/23', 'nombre']
+df.sample()
+df.sample(n = 3)
+
+#%%
+promedio = (df['nota1'] + df['nota2'])/2
+df['promedio'] = promedio  #agregamos la columna de promedio
+print(df.head())
+
+#%%
+
+alu_nue = {'lu': ['123/45'], 'nombre' : ['Juan'], 'apellido': ['Perez'], 'nota1': [2], 'nota2': [10]}
+df_alu_nue = pd.DataFrame(data= alu_nue)
+df_alu_nue.set_index('lu', inplace = True)
+
+df_nuevo= pd.concat([df,df_alu_nue])
+df_nuevo.loc['123/45','promedio'] = (df_nuevo.loc['123/45','nota1'] + df_nuevo.loc['123/45','nota2'])/2  #asignamos valor a una posicion
+#print(df_nuevo)
+
+df_nuevo.loc['123/45','aprueba'] = False
+
+df_nuevo['aprueba']= (df_nuevo['nota2']>= 5 )& (df_nuevo['nota1']>= 5)
+
+df_nuevo['promociona'] = (df_nuevo['nota2'] >= 8) & (df_nuevo['nota1']>= 8)
+
+df_aprobados = df_nuevo[df_nuevo['nota1'] >= 5] 
+
+print(df_nuevo)
+print(df_aprobados)

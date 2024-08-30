@@ -1,0 +1,22 @@
+import pandas as pd
+from pathlib import Path
+
+
+Home = Path.home()
+
+nombre = Home /'Descargas/arbolado-en-espacios-verdes.csv'
+
+df_a= pd.read_csv(nombre)
+
+def leer_parque(nombre_archivo, parque):
+    df= pd.read_csv(nombre_archivo)
+    df_p= df[df['espacio_ve']== parque]
+    lista= []
+    for fila in df_p:
+        if fila['espacio_ve'] in lista:
+            lista.append(fila.to_dict())
+    
+    return lista
+
+print(leer_parque(nombre,'GENERAL PAZ'))
+            

@@ -6,10 +6,58 @@ empleado_01 = np.array([[20222333, 45, 2, 20000], [33456234, 40, 0, 25000], [454
 
 def superanSalarioActividad01(matriz,umbral):
     i = 0
-    res = []
+    filas = []
     while i< matriz.shape[0] :
         if matriz[i][3] > umbral: 
-            res.append(matriz[0])
+            filas.append(matriz[i])
+       
+        i = i+1
+    res = np.array(filas)
+    
+    return res
+
+#print(superanSalarioActividad01(empleado_01, 15000))
+
+empleado_02 = np.array([[20222333, 45, 2, 20000], [33456234, 40, 0, 25000], [45432345, 41, 1, 10000], [43967304, 37, 0, 12000], [42236276, 36, 0, 18000]])
+
+#print(superanSalarioActividad01(empleado_02, 15000))
+
+empleado_03 = np.array([[20222333, 20000, 45, 2], [33456234, 25000, 40, 0], [45432345, 10000, 41, 1], [43967304, 12000, 37, 0], [42236276, 18000, 36, 0]])
+
+#print(superanSalarioActividad01(empleado_03, 15000))
+
+def superanSalarioActividad03(matriz,umbral):
+    i=0 
+    filas = []
+    while i< matriz.shape[0]:
+        if matriz[i][1] > umbral:
+            filas.append(matriz[i])
+         
+        i= i+1 
+    
+    res = np.array(filas)
+    columna1, columna3 = 1, 3 
+    res[:, [columna1,columna3]]= res[:, [columna3,columna1]]
+    columna2,columna4 = 1, 2 
+    res[:, [columna2,columna4]] =  res[:, [columna4, columna2]]
+    
     return res 
 
-print(superanSalarioActividad01(empleado_01, 15000))
+
+#print(superanSalarioActividad03(empleado_03, 15000))
+    
+empleado_04= np.array([[20222333, 33456234, 45432345, 43967304, 4223276], [20000, 25000, 10000, 12000, 18000],[45, 40, 41, 37, 36],[2, 0, 1, 0, 0]]).T   
+
+#(superanSalarioActividad01(empleado_04, 15000))        
+            
+#print(superanSalarioActividad03(empleado_04, 15000))    
+
+#%%
+
+# 1.a) En este caso no afecto en nada a la funcion ya que esta hace la comparacion con el umbral en base a la columna donde este se ubica, sin importar la cantidad de filas q tenga
+
+# b ) En este caso si altero a la funcion ya que esta se basa en el numero de columna donde se encuentra los salarios y al cambiar de lugar la columna de los salarios me dejo de servir la funcion
+
+# 2) No afecto en nada a la funcion, nose si lo habre hecho bien
+
+# 3) 

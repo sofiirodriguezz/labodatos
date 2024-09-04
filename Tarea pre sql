@@ -1,0 +1,15 @@
+import numpy as np 
+
+empleado_01 = np.array([[20222333, 45, 2, 20000], [33456234, 40, 0, 25000], [45432345, 41, 1, 10000]])
+
+#print(empleado_01)
+
+def superanSalarioActividad01(matriz,umbral):
+    i = 0
+    res = []
+    while i< matriz.shape[0] :
+        if matriz[i][3] > umbral: 
+            res.append(matriz[0])
+    return res 
+
+print(superanSalarioActividad01(empleado_01, 15000))

@@ -149,6 +149,96 @@ consultaSQL = """ SELECT DISTINCT Codigo
 res8= sql^ consultaSQL
 print(res8)
 
+#%%
+#9)
+consultaSQL = """ 
+
+SELECT DISTINCT Ciudad
+FROM vuelo
+INNER JOIN aeropuerto
+ON Origen = Codigo
+WHERE Numero = 165
+"""
+res9 = sql^ consultaSQL
+print(res9)
+
+#%%
+#10)
+consultaSQL = """
+SELECT DISTINCT Nombre 
+FROM pasajero AS p
+INNER JOIN reserva AS r
+ON p.DNI = R.DNI 
+WHERE Precio < 200
+"""
+res10 = sql^ consultaSQL
+print(res10)
+
+#%%
+
+#11)
+vuelosMad = sql^  """
+SELECT DISTINCT Numero, Destino
+FROM vuelo
+INNER JOIN aeropuerto
+ON Origen = Codigo
+WHERE Ciudad = 'Madrid'
+"""
+dniPersonasDesdeMadrid = sql^ """
+SELECT DNI, Fecha, vuelosMad.Destino
+FROM vuelosMad
+INNER JOIN reserva
+ON Numero = NroVuelo
+
+"""
+consultaSQL = """
+SELECT Nombre, Fecha, Destino
+FROM dniPersonasDesdeMadrid
+INNER JOIN pasajero
+ON dniPersonasDesdeMadrid.DNI = pasajero.DNI
+
+
+
+"""
+res11= sql^ consultaSQL
+print(res11)
+
+
+#%%
+consultaSQL= """
+SELECT DISTINCT r.Fecha, v.salida, p.Nombre
+FROM reserva AS r, pasajero AS p, vuelo AS v
+WHERE r.DNI = p.DNI AND r.NroVuelo = v.Numero
+
+"""
+
+#%%
+consultaSQL = """
+SELECT DISTINCT er.empleado, er.rol, rp.proyecto
+FROM EmpleadoRol AS er
+INNER JOIN RolProyecto AS rp
+ON er.rol = rp.rol
+
+
+"""
+#%%
+
+consultaSQL = """
+SELECT Nombre,
+       Nota,
+       CASE WHEN Nota >= 4
+            THEN 'APROBO'
+            ELSE 'NO APROBO'
+       END AS Estado 
+FROM examen
+WHERE Instancia = 'Parcial-01'
+ORDER BY Nombre
+
+"""
+res= sql^ consultaSQL
+print(res)
+
+
 
 #%%===========================================================================
 # Ejercicios AR-PROJECT <-> SELECT

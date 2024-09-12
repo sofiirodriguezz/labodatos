@@ -1,0 +1,112 @@
+import pandas as pd
+from inline_sql import sql, sql_val 
+
+
+
+
+casos = pd.read_csv('C:/Users/juli/Downloads/Guía Práctica - SQL - Archivos adjuntos-20240912/casos.csv')
+departamento = pd.read_csv('C:/Users/juli/Downloads/Guía Práctica - SQL - Archivos adjuntos-20240912/departamento.csv')
+grupoetario= pd.read_csv('C:/Users/juli/Downloads/Guía Práctica - SQL - Archivos adjuntos-20240912/grupoetario.csv')
+provinica= pd.read_csv('C:/Users/juli/Downloads/Guía Práctica - SQL - Archivos adjuntos-20240912/provincia.csv')
+tipoevento= pd.read_csv('C:/Users/juli/Downloads/Guía Práctica - SQL - Archivos adjuntos-20240912/tipoevento.csv')
+
+
+#%%
+#A
+#a)
+consultaSQL = """
+SELECT descripcion
+FROM departamento
+
+"""
+res = sql^ consultaSQL 
+print(res)
+ 
+#%%
+#b) 
+consultaSQL = """
+SELECT DISTINCT descripcion
+FROM departamento
+
+"""
+res = sql^ consultaSQL 
+print(res)
+
+#%%
+#c)
+consultaSQL= """
+SELECT descripcion,id
+FROM departamento
+
+"""
+res = sql^ consultaSQL 
+print(res)
+
+#%%
+#d)
+consultaSQL ="""
+SELECT *
+FROM departamento
+
+"""
+res= sql^ consultaSQL 
+print(res)
+
+#%%
+#e)
+consultaSQL = """
+SELECT descripcion AS nombre_depto, id AS codigo_depto
+FROM departamento
+
+"""
+res = sql^ consultaSQL 
+print(res)
+#%%
+#f)
+consultaSQL = """
+SELECT id
+FROM departamento
+WHERE  d_provincia= 54
+
+"""
+res = sql^ consultaSQL 
+print(res)
+
+#%%
+#g)
+consultaSQL = """
+SELECT id 
+FROM departamento
+WHERE d_provincia = 22, OR d_provincia= 78 OR d_provincia = 86
+"""
+res = sql^ consultaSQL 
+print(res)
+#%%
+#h)
+consultaSQL= """
+SELECT id 
+FROM departamento 
+WHERE 50 <= d_provincia >= 59
+
+"""
+res = sql^ consultaSQL 
+print(res)
+#%%
+#B) a)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

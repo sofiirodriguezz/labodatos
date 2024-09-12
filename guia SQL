@@ -7,7 +7,7 @@ from inline_sql import sql, sql_val
 casos = pd.read_csv('C:/Users/juli/Downloads/Guía Práctica - SQL - Archivos adjuntos-20240912/casos.csv')
 departamento = pd.read_csv('C:/Users/juli/Downloads/Guía Práctica - SQL - Archivos adjuntos-20240912/departamento.csv')
 grupoetario= pd.read_csv('C:/Users/juli/Downloads/Guía Práctica - SQL - Archivos adjuntos-20240912/grupoetario.csv')
-provinica= pd.read_csv('C:/Users/juli/Downloads/Guía Práctica - SQL - Archivos adjuntos-20240912/provincia.csv')
+provinicia= pd.read_csv('C:/Users/juli/Downloads/Guía Práctica - SQL - Archivos adjuntos-20240912/provincia.csv')
 tipoevento= pd.read_csv('C:/Users/juli/Downloads/Guía Práctica - SQL - Archivos adjuntos-20240912/tipoevento.csv')
 
 
@@ -185,7 +185,24 @@ WHERE año = 2019
 
 #%%
 #g)
+prov = sql^ """
+SELECT *
+FROM casos
+INNER JOIN departamento
+ON casos.id_depto = departamento.id
 
+"""
+consultaSQL= """
+SELECT id_provincia,
+       anio AS año,
+       AVG(cantidad) AS promedio
+FROM prov
+GROUP BY id_provincia, año
+ORDER BY año ASC, promedio DESC
+
+"""
+res = sql^ consultaSQL
+print(res)
 
 
 

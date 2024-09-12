@@ -93,6 +93,100 @@ res = sql^ consultaSQL
 print(res)
 #%%
 #B) a)
+consultaSQL = """
+SELECT descripcion, id
+FROM departamento
+INNER JOIN provincia
+ON id_provincia = id
+
+"""
+res = sql^ consultaSQL 
+print(res)
+
+#%%
+#b)
+consultaSQL = """
+
+
+"""
+#%%
+#c)
+consultaSQL = """
+
+
+"""
+#%%
+#C)a)
+#%%
+#b)
+#%%
+#D)a)
+consultaSQL = """
+SELECT COUNT(cantidad) AS cantidadCasos
+FROM casos
+
+"""
+res = sql^ consultaSQL 
+print(res)
+#%%
+#b)
+consultaSQL = """
+SELECT id_tipoevento AS descripcion
+       anio AS año
+       COUNT(cantidad) AS cantidad
+FROM casos
+GROUP BY descripcion, año 
+ORDER BY descripcion ASC, año DESC
+"""
+res = sql^ consultaSQL 
+print(res)
+
+#%%
+#c)
+consultaSQL = """
+SELECT id_tipoevento AS descripcion
+       anio AS año
+       COUNT(cantidad) AS cantidad
+FROM casos
+WHERE año = 2019
+GROUP BY descripcion, año 
+ORDER BY descripcion ASC, año DESC
+
+"""
+res= sql^ consultaSQL
+print(res)
+
+#%%
+#d)
+consultaSQL="""
+SELECT id_provincia AS codigo
+       COUNT(descripcion) AS cantidadDeptos
+FROM departamento
+GROUP BY codigo
+ORDER BY codigo DESC
+"""
+res = sql^ consultaSQL
+print(res)
+
+#%% consultar
+#e) 
+consultaSQL = """
+SELECT id_depto AS depto
+       COUNT(cantidad) AS cantidad
+FROM casos
+WHERE año = 2019
+
+       
+
+
+"""
+#%%
+#f) consultar
+
+#%%
+#g)
+
+
 
 
 

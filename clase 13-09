@@ -1,0 +1,75 @@
+import pandas as pd
+from inline_sql import sql, sql_val
+
+
+# pyp install inline_sql 
+
+#%%===========================================================================
+# Importamos los datasets que vamos a utilizar en este programa
+#=============================================================================
+
+carpeta = "/home/Estudiante/Descargas/Clases 06-08 - SQL - Archivos clase (template script + datos)-20240906/"
+
+# Ejercicios AR-PROJECT, SELECT, RENAME
+empleado       = pd.read_csv(carpeta+"empleado.csv")
+# Ejercicios AR-UNION, INTERSECTION, MINUS
+alumnosBD      = pd.read_csv(carpeta+"alumnosBD.csv")
+alumnosTLeng   = pd.read_csv(carpeta+"alumnosTLeng.csv")
+# Ejercicios AR-CROSSJOIN
+persona        = pd.read_csv(carpeta+"persona.csv")
+nacionalidades = pd.read_csv(carpeta+"nacionalidades.csv")
+# Ejercicios ¿Mismos Nombres?
+se_inscribe_en=pd.read_csv(carpeta+"se_inscribe_en.csv")
+materia       =pd.read_csv(carpeta+"materia.csv")
+# Ejercicio JOIN múltiples tablas
+vuelo      = pd.read_csv(carpeta+"vuelo.csv")    
+aeropuerto = pd.read_csv(carpeta+"aeropuerto.csv")    
+pasajero   = pd.read_csv(carpeta+"pasajero.csv")    
+reserva    = pd.read_csv(carpeta+"reserva.csv")    
+# Ejercicio JOIN tuplas espúreas
+empleadoRol= pd.read_csv(carpeta+"empleadoRol.csv")    
+rolProyecto= pd.read_csv(carpeta+"rolProyecto.csv")    
+# Ejercicios funciones de agregación, LIKE, Elección, Subqueries 
+# y variables de Python
+examen     = pd.read_csv(carpeta+"examen.csv")
+# Ejercicios de manejo de valores NULL
+examen03 = pd.read_csv(carpeta+"examen03.csv")
+
+#%%
+#1)
+datosestudiante = sql^ """
+SELECT Nombre, Sexo, Edad
+FROM examen
+"""
+parcial_1 = sql^ """
+SELECT DISTINCT est.*, examen.nota AS Parcial_01
+FROM datosestudiante AS est
+LEFT JOIN examen 
+ON est.Nombre= examen.nombre AND examen.Instancia= 'Parcial-01'
+ORDER BY est.Nombre
+"""
+
+parcial_2 =sql^ """
+SELECT parcial_1.*, examen.nota AS Parcial_02
+FROM parcial_1
+LEFT JOIN examen
+ON examen.nombre= parcial_1.Nombre AND examen.Instancia= 'Parcial-02'
+ORDER BY parcial_1.nombre
+"""
+re_1= sql^ """
+SELECT parcial_2.*, examen.nota AS Recuperatorio_01
+FROM parcial_2
+LEFT JOIN examen
+ON examen.Nombre = parcial_2.Nombre AND examen.Instancia= 'Recuperatorio-01'
+ORDER BY parcial_2.Nombre
+"""
+consultaSQL =  """
+SELECT re_1.*, examen.nota AS Recuperatorio_02
+FROM re_1
+LEFT JOIN examen
+ON examen.NOmbre = re_1.Nombre AND examen.Instancia= 'Recuperatorio-02'
+ORDER BY re_1.Nombre
+"""
+res = sql^ consultaSQL
+print(res)
+

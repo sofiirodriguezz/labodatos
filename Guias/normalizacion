@@ -1,1 +1,34 @@
+Preguntas de repaso
+a. Comente las anomalías de inserción, borrado y modificación. ¿Por qué están consideradas como malas? Ilustre sus comentarios con ejemplos.
+Estas anomalias se generan por almacenar natural joins.
+En la anomalia de insercion hay que tener en cuenta si a querer agregar algo estan todos definidos, en el casode que no se pueden generar nulls y siempre tiene que ser
+consistente lo que agregues. 
+En la anomalia de borrado borras toda una fila de lo que quieras, pero si elegis uno que ...
+En la anomalia de modificacion si modificas un atributo, hay requiere modificar todas las tuplas de ese atributo, sino se generan inconsistencias.
+Estan consideradas como malas porque hay que tener muchas cosas en cuenta y pueden generar inconsistencias o nulls
+
+b. ¿Por qué deben evitarse en la medida de lo posible los valores NULL en una relación? Comente el problema de las tuplas espúreas y cómo pueden prevenirse.
+Hay que evitar los nulls porque es un desperdicio de almacenamiento e inner y outer join produce distintos resultados. Las tuplas espureas muestran informacion no 
+valida al hacer natural join, se puede prevenir eligiendo como atributos para relacionarse claves primarias(PK) o foraneas. 
+
+c. ¿Qué es una dependencia funcional? ¿Cuáles son las posibles fuentes de información que definen las dependencias funcionales que se cumplen entre los atributos
+de un esquema de relación?
+La dependencia funcional especifica una restriccion sobre las posibles tuplas que pueden conformar una instancia r de R
+
+d. ¿Por qué no podemos inferir automáticamente una dependencia funcional de un estado de relación particular? 
+Dada una relacion con sus datos, no es posible determinar sus DF a traves de sus valores. Es necesario conocer el significado y relacion que existe entre los
+atributos que la componen
+
+e. ¿Qué dependencias no deseables se evitan cuando una relación está en 2FN?
+Cuando una relacion esta en 2FN se evitan las dependencias parciales
+f. ¿Qué dependencias no deseables se evitan cuando una relación está en 3FN?
+Cuando una relacion esta en 3FN se evitan las dependencias transitivas
+
+EJERCICIOS
+
+A) ¿Por qué pueden producirse tuplas espúreas en el resultado de la concatenación de las relaciones EMP_PROY1 y EMP_ LOCS? (a continuación se puede observar
+parte del resultado del NATURAL JOIN)
+Se pueden producir tuplas espureas ya que el natural join se haria con la relacion del atributo Ubicacion proyecto y este no es una clave primaria.(consultar)
+
+B) 
 

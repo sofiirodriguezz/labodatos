@@ -203,6 +203,47 @@ ORDER BY año ASC, promedio DESC
 """
 res = sql^ consultaSQL
 print(res)
+#%%
+#h)
+
+#%%
+#i)
+consultaSQL= """
+SELECT id_provincia,
+       anio AS año,
+       COUNT(cantidad) AS Total,
+       MAX(cantidad) AS Maxima,
+       MIN(cantidad) AS Minima,
+       AVG(cantidad) AS promedio,
+FROM prov
+WHERE id_provincia= 6 AND año = 2019
+GROUP BY id_provincia, año
+ORDER BY año
+
+"""
+res= sql^ consultaSQL
+print(res)
+
+#%%
+#j)
+consultaSQL= """
+SELECT id_provincia,
+       anio AS año,
+       COUNT(cantidad) AS Total,
+       MAX(cantidad) AS Maxima,
+       MIN(cantidad) AS Minima,
+       AVG(cantidad) AS promedio,
+FROM prov
+GROUP BY id_provincia, año
+HAVING Total > 1000
+ORDER BY año
+"""
+res = sql^ consultaSQL
+print(res)
+#%%
+#k)
+
+
 
 
 
